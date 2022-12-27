@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97760cb2-f0b0-4ea5-9429-7c3a3514b3a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/module/product/ProductTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/ListProductPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/ProductAdditionFormPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/module/product/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/module/product/ProductTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672080224985</updated>
       <workItem from="1672080227287" duration="3638000" />
-      <workItem from="1672164431113" duration="1734000" />
+      <workItem from="1672164431113" duration="4388000" />
     </task>
     <servers />
   </component>
@@ -96,7 +97,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/module/product/ProductTest.java</url>
-          <line>15</line>
+          <line>38</line>
           <properties class="module.product.ProductTest" method="DoNotAllowInsertionOfProductWithValueEqualToZero">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
