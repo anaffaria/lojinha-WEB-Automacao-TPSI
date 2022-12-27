@@ -1,15 +1,9 @@
 package module.product;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.ListProductPage;
 import pages.LoginPage;
-import pages.ProductAdditionFormPage;
 
 import java.time.Duration;
 
@@ -36,39 +30,97 @@ public class ProductTest {
 
     @Test
     @DisplayName("Nao permitir a insercao de produto com valor igual a zero")
-    public void DoNotAllowInsertionOfProductWithValueEqualToZero(){
+    public void testDoNotAllowInsertionOfProductWithValueEqualToZero(){
 
-        //Fazer Login
-        new LoginPage(browser)
+        String messageToast = new LoginPage(browser)
                 .informTheUser("admin")
                 .informThePassword("admin")
                 .submitLoginForm()
-                .productAdditionForm();
+                .productAdditionForm()
+                .addProductName("PlayStation 5")
+                .addProductValue("0.00")
+                .addProductColor("preto, branco")
+                .submitProductAdditionForm()
+                .captureDisplayedMessage();
 
 
-
-
-
-
-
-        //Vou preencher dados do produto e o valor sera igual a zero
-
-
-
-
-        //Vou submeter o formulario
-        browser.findElement(By.cssSelector("button[type='submit']")).click();
-
-        //Vou validar que a mensagem de erro foi apresentada
-        String messageToast = browser.findElement(By.cssSelector(".toast.rounded")).getText();
         Assertions.assertEquals("O valor do produto deve estar entre R$ 0,01 e R$ 7.000,00", messageToast);
+    }
+    @Test
+    @DisplayName("Nao permitir a insercao de produto com o valor igual a 7000.01")
+    public void testDoNotAllowInsertionOfProductWithValueSevenThousantPointZeroOne(){
+        String messageToast = new LoginPage(browser)
+                .informTheUser("admin")
+                .informThePassword("admin")
+                .submitLoginForm()
+                .productAdditionForm()
+                .addProductName("PlayStation 5")
+                .addProductValue("7000.01")
+                .addProductColor("preto, branco")
+                .submitProductAdditionForm()
+                .captureDisplayedMessage();
 
-        //Vou fehcar o navegador
-        browser.quit();
 
-
-
-
+        Assertions.assertEquals("O valor do produto deve estar entre R$ 0,01 e R$ 7.000,00", messageToast);
     }
 
+    @Test
+    @DisplayName("Permitir a insercao do valor de produto limite igual a 0.01")
+    public void testDoNotAllowInsertionOfProductWithValueEqualToZeroPointZeroOne(){
+        String messageToast = new LoginPage(browser)
+                .informTheUser("admin")
+                .informThePassword("admin")
+                .submitLoginForm()
+                .productAdditionForm()
+                .addProductName("PlayStation 5")
+                .addProductValue("0.01")
+                .addProductColor("preto, branco")
+                .submitProductWithSucessAdditionForm()
+                .captureDisplayedMessagetoEditionPage();
+
+
+        Assertions.assertEquals("Produto adicionado com sucesso", messageToast);
+    }
+
+    @Test
+    @DisplayName("Permitir a insercao do valor de produto limite igual a 7000.00")
+    public void testDoNotAllowInsertionOfProductWithValueEqualToSevenThousand(){
+        String messageToast = new LoginPage(browser)
+                .informTheUser("admin")
+                .informThePassword("admin")
+                .submitLoginForm()
+                .productAdditionForm()
+                .addProductName("PlayStation 5")
+                .addProductValue("7000,00")
+                .addProductColor("preto, branco")
+                .submitProductWithSucessAdditionForm()
+                .captureDisplayedMessagetoEditionPage();
+
+
+        Assertions.assertEquals("Produto adicionado com sucesso", messageToast);
+    }
+
+    @Test
+    @DisplayName("Cadastrar um produto com valores entre 0.01 e 7000.00")
+    public void testSuccessfullyRegisterProduct(){
+        String messageToast = new LoginPage(browser)
+                .informTheUser("admin")
+                .informThePassword("admin")
+                .submitLoginForm()
+                .productAdditionForm()
+                .addProductName("PlayStation 5")
+                .addProductValue("5000.01")
+                .addProductColor("preto, branco")
+                .submitProductWithSucessAdditionForm()
+                .captureDisplayedMessagetoEditionPage();
+
+
+        Assertions.assertEquals("Produto adicionado com sucesso", messageToast);
+    }
+
+    @AfterEach
+    public void AfterEach(){
+        //Vou fechar o navegador
+        browser.quit();
+    }
 }

@@ -14,4 +14,8 @@ public class ListProductPage {
         browser.findElement(By.linkText("ADICIONAR PRODUTO")).click();
         return new ProductAdditionFormPage(browser);
     }
+
+    public String captureDisplayedMessage(){
+        return browser.findElement(By.cssSelector(".toast.rounded")).getText();
+    }
 }

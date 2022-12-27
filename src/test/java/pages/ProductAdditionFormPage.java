@@ -17,13 +17,23 @@ public class ProductAdditionFormPage {
         return this;
     }
 
-    public ProductAdditionFormPage addProductValue(Double productValue){
-        browser.findElement(By.id("produtovalor")).sendKeys(productValue.toString());
+    public ProductAdditionFormPage addProductValue(String productValue){
+        browser.findElement(By.id("produtovalor")).sendKeys(productValue);
         return this;
     }
 
-    public ProductAdditionFormPage addProductColor(List<String> productColor){
-        browser.findElement(By.id("produtocores")).sendKeys("preto, branco");
+    public ProductAdditionFormPage addProductColor(String productColor){
+        browser.findElement(By.id("produtocores")).sendKeys(productColor);
         return this;
     }
+
+    public ProductEditionFormPage submitProductWithSucessAdditionForm(){
+        browser.findElement(By.cssSelector("button[type='submit']")).click();
+        return new ProductEditionFormPage(browser);
+    }
+    public ListProductPage submitProductAdditionForm(){
+        browser.findElement(By.cssSelector("button[type='submit']")).click();
+        return new ListProductPage(browser);
+    }
+
 }
